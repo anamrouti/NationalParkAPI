@@ -10,12 +10,12 @@ function formatQueryParams(params) {
     return queryItems.join('&');
   }
 
-function getParks(state, maxResults=10){
+function getParks(state, maxResults=10, term){
     const params = {
-        key: api_key,
-        q: query,
+        api_key: api_key,
+        q: term,
         stateCode: state,
-        maxResults
+        limit: maxResults,
     };
 
     const queryString = formatQueryParams(params);
@@ -43,6 +43,24 @@ function displayResults(responseJson){
     for (i = 0; i < responseJson.message.limit; i++) {
 
         $('#results-list').append(`
-        <li><h3>${responseJson.item[i].stateCode.}`)
+        <li><h3>${responseJson.data[i].addresses.city}</h3>
+        <p>${responseJson.data[i].description}</p>
+        <a href="${responseJson.data[i].url}">${responseJson.data[i].url}</a></li>`)
+    }
+    $('#results').removeClass('hidden');
+}
+
+function watchForm(){
+    $('form').submit(event => {
+        event.preventDefault();
+        
+        const stateCode = $('#js-parkState').val();
+        const maxResults = $('#js-maxResults').val();
+        const searchTerm = $('#js-searchTerm').val();
+        getParks(stateCode, maxResults, searchTerm);
+
+        displayResults(responseJson);
+        
+
     }
 }
