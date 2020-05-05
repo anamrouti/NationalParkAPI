@@ -1,0 +1,18 @@
+*{
+    box-sizing:border-box;
+    padding:10px 8px 12px 0;
+}
+
+.container{
+    display:flex;
+    border:solid black;
+    background-color: aqua;
+}
+
+.hidden {
+    display:none;
+}
+
+.results {
+    font-weight:3;
+}

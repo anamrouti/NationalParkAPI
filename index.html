@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>National Park Search API</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="National Park Search API">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css"
+            media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <main class="container">
+            <form id="user-input">
+                <label for="parkState">Which state would you like to search Parks in?</label>
+                <input type="text" id="js-parkState" class="parkState-input" placeholder="FL">
+                <label for="maxResults">How many parks would you like to seach?</label>
+                <input type="number" id="js-maxResults" class="maxResults-input" default="10">
+                <button type="submit" id="input-button" class="submit button">Search Parks</button>
+
+                <section id="results hidden">
+                    <h3>Here are some of the parks nearby:</h3>
+                    <ul id="results-list">
+                    </ul>
+                    <p id="js-error-message"></p>
+                </section>
+            </form>
+        </main>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
