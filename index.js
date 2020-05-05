@@ -29,6 +29,7 @@ function getParks(state, maxResults=10, term){
             throw new Error(response.statusText);
         })
         .then(responseJson => console.log(JSON.stringify(responseJson)))
+        .then(responseJson => displayResults(responseJson))
         .catch(error => {
             $('#js-error-message').text(`Something went wrong. Try again`);
         });
@@ -40,7 +41,7 @@ function displayResults(responseJson){
 
     $('#results-list').empty();
 
-    for (i = 0; i < responseJson.message.limit; i++) {
+    for (i = 0; i < responseJson.data.limit; i++) {
 
         $('#results-list').append(`
         <li><h3>${responseJson.data[i].addresses.city}</h3>
@@ -62,5 +63,5 @@ function watchForm(){
         displayResults(responseJson);
         
 
-    }
+    });
 }
