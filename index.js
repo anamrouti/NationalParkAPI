@@ -10,7 +10,7 @@ function formatQueryParams(params) {
     return queryItems.join('&');
   }
 
-function getParks(state, maxResults=10, term){
+function getParks(state, maxResults, term){
     const params = {
         api_key: api_key,
         q: term,
@@ -28,27 +28,31 @@ function getParks(state, maxResults=10, term){
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => console.log(JSON.stringify(responseJson)))
+        //.then(responseJson => console.log(JSON.stringify(responseJson)))
         .then(responseJson => displayResults(responseJson))
         .catch(error => {
             $('#js-error-message').text(`Something went wrong. Try again`);
         });
-}
+};
+
 
 
 function displayResults(responseJson){
-    console.log(responseJson);
-
-    $('#results-list').empty();
-
-    for (i = 0; i < responseJson.data.length; i++) {
-
-        $('#results-list').append(`
-        <li><h3>${responseJson.data[i].fullName}</h3>
-        <p>${responseJson.data[i].description}</p>
-        <a href="${responseJson.data[i].url}">${responseJson.data[i].url}</a></li>`)
-    };
+    var mylength = responseJson["data"].length;    
+    
+    for(i=0; i<mylength; i++){
+    
+    $('#results-list').append(`
+        <li><h3>${responseJson["data"][i].fullName}</h3></li>
+        <p>${responseJson["data"][i].description}</p>
+        <a href="${responseJson["data"][i].url}">${responseJson["data"][i].url}</a></li>`);
+    }
     $('#results').removeClass('hidden');
+    
+    //console.log(responseJson["data"]);
+
+    //$('#results-list').empty();
+   
 }
 
 function watchForm(){
