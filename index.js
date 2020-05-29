@@ -38,20 +38,16 @@ function getParks(state, maxResults, term){
 
 
 function displayResults(responseJson){
-    var mylength = responseJson["data"].length;    
-    
-    for(i=0; i<mylength; i++){
-    
-    $('#results-list').append(`
+    const mylength = responseJson["data"].length;    
+    $('#results-list').empty();
+    for ( let i=0; i < mylength; i++){
+        $('#results-list').append(`
         <li><h3>${responseJson["data"][i].fullName}</h3></li>
         <p>${responseJson["data"][i].description}</p>
         <a href="${responseJson["data"][i].url}">${responseJson["data"][i].url}</a></li>`);
     }
-    $('#results').removeClass('hidden');
+   
     
-    //console.log(responseJson["data"]);
-
-    //$('#results-list').empty();
    
 }
 
